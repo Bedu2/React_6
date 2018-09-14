@@ -6,21 +6,29 @@ class Comentarios extends Component {
 
 	componentDidMount() {
 		this.props.traerComentarios();
+		console.log('this.props: ', this.props);
 	}
+
+	desplegarComentarios = () => (
+		this.props.comentarios.map((elem, index) => (
+			<p key={elem.email}>
+				{elem.body}
+			</p>
+		))
+	);
 	
 	render() {
-		console.log(this.props.comentariosReducer);
 		return (
 			<div>
-				vsfve
+				{ this.desplegarComentarios() }
 			</div>
 		);
 	}
 }
 
-const mapStateToProps = (reducers) =>
+const mapStateToProps = ({ comentariosReducer: { comentarios } }) =>
 {
-	return reducers;
+	return { comentarios };
 }
 
 export default connect(mapStateToProps, comentariosActions)(Comentarios);
