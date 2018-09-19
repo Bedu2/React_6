@@ -10,39 +10,20 @@ import {
 } from '../../types/comentariosTypes';
 
 class Agregar extends Component {
-//----> 
-	// handleChange = event => this.setState({ [event.target.name]: event.target.value });
 
-	handleChange = (event, type) => {
-		this.props.cambiarInput(type, event.target.value);
-	};
+	handleChange = (event, type) => this.props.cambiarInput(type, event.target.value);
 
 //----> 
 	enviar = async () => {
-		this.setState({ cargando: true });
-
 		const {
 			nombre: name,
 			correo: email,
 			comentario: body
-		} = this.state;
+		} = this.props;
 
 		const valores = { name, email, body };
 
-		try {
-			await axios.post('https://jsonplaceholder.typicode.com/comments', valores);
-			window.Materialize.toast('Comentario guardado exitosamente.', 5 * 1000);
-			this.setState({
-				nombre: '',
-				correo: '',
-				comentario: ''
-			});
-		}
-		catch(error) {
-			window.Materialize.toast('Intente más tarde.', 5 * 1000, 'red');
-		}
-
-		this.setState({ cargando: false });
+		this.props.enviarForma(valores);
 	};
 
 	render() {

@@ -4,7 +4,8 @@ import {
 	ERROR,
 	UPDATE_NOMBRE,
 	UPDATE_CORREO,
-	UPDATE_COMENTARIO
+	UPDATE_COMENTARIO,
+	FORMA_EXITOSA
 } from '../types/comentariosTypes';
 
 const INITIAL_STATE = {
@@ -26,6 +27,14 @@ export default (state = INITIAL_STATE, action) =>
 		case UPDATE_NOMBRE: return { ...state, nombre: action.payload };
 		case UPDATE_CORREO: return { ...state, correo: action.payload };
 		case UPDATE_COMENTARIO: return { ...state, comentario: action.payload };
+		case FORMA_EXITOSA: return {
+			...state,
+			cargando: false,
+			error: '',
+			nombre: '',
+			correo: '',
+			comentario: ''
+		}
 		default: return state;
 	}
 }
