@@ -1,13 +1,19 @@
 import axios from 'axios';
+import { EMPEZAR, EXITOSO, ERROR } from '../types/comentariosTypes';
 
 export const traerComentarios = () => async (dispatch) =>
 {
-	const response = await axios.get('https://jsonplaceholder.typicode.com/comments');
-	dispatch({ type: 'traer', payload: response.data });
+	dispatch({ type: EMPEZAR });
+
+	try {
+		const response = await axios.get('https://jsonplaceholder.typicode.com/comments');
+		dispatch({ type: EXITOSO, payload: response.data });
+	}
+	catch (err) {
+		dispatch({ type: ERROR, payload: err.message });
+	}
 };
 
-export const agregarComentarios = () => async (dispatch) =>
-{
-	const response = await axios.get('https://jsonplaceholder.typicode.com/comments');
-	dispatch({ type: 'traer', payload: response.data });
+export const cambiarInput = (type, valor) => async (dispatch) => {
+	dispatch({ type, payload: valor });
 };
