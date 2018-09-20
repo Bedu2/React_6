@@ -22,7 +22,7 @@ export const enviarForma = (valores) => async (dispatch) => {
 	dispatch({ type: EMPEZAR });
 
 	try {
-		await axios.post('https://jsonplaceholder.tymnjpicode.com/comments', valores);
+		await axios.post('https://jsonplaceholder.typicode.com/comments', valores);
 		window.Materialize.toast('Comentario guardado exitosamente.', 5 * 1000);
 
 		dispatch({ type: FORMA_EXITOSA });

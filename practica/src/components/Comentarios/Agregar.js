@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Input, Button, Preloader } from 'react-materialize';
-import axios from 'axios';
 import * as comentariosActions from '../../actions/comentariosActions';
 import {
 	UPDATE_NOMBRE,

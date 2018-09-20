@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { Table ,Preloader, Button } from 'react-materialize';
 import * as comentariosActions from '../../actions/comentariosActions';
 
@@ -7,6 +8,7 @@ class Comentarios extends Component {
 
 	componentDidMount() {
 		this.props.traerComentarios();
+		console.log(1);
 	}
 
 	desplegarComentarios = () => (
@@ -44,6 +46,8 @@ class Comentarios extends Component {
 			<Preloader size='big'/>
 		</div>
 	);
+
+	desplegarContenido = () => ( (this.props.error) ? this.desplegarError() : this.desplegarComentarios() );
 	
 	render() {
 		return (
@@ -51,10 +55,13 @@ class Comentarios extends Component {
 				<h3 className="valign-wrapper">
 					Comentarios
 					&nbsp;
-					<Button node='a' href='/comentarios/agregar' floating large className='blue' waves='light' icon='add' />
+					<Link to='/comentarios/agregar'>
+						<Button floating large className='blue' waves='light' icon='add' />
+					</Link>
 				</h3>
-				{ (this.props.cargando) ? this.desplegarCargando() : '' }
-				{ (this.props.error) ? this.desplegarError() : this.desplegarComentarios() }
+				{
+					(this.props.cargando) ? this.desplegarCargando() : this.desplegarContenido()
+				}
 			</div>
 		);
 	}

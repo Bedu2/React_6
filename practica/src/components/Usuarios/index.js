@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { Collapsible, CollapsibleItem, Button, Preloader } from 'react-materialize';
 import * as usuariosActions from '../../actions/usuariosActions';
 
@@ -60,6 +61,7 @@ class Usuarios extends Component {
 		</div>
 	);
 
+	desplegarContenido = () => ( (this.props.error) ? this.desplegarError() : this.desplegarUsuarios() );
 
 	render() {
 		return (
@@ -67,19 +69,13 @@ class Usuarios extends Component {
 				<h3 className="valign-wrapper">
 					Usuarios
 					&nbsp;
-					<Button
-						floating large
-						className='blue'
-						waves='light'
-						icon='add'
-						node='a'
-						href='/usuarios/agregar'
-					/>
+					<Link to='/usuarios/agregar'>
+						<Button floating large className='blue' waves='light' icon='add' />
+					</Link>
 				</h3>
-
-				{ (this.props.cargando) ? this.desplegarCargando() : '' }
-
-				{ (this.props.error) ? this.desplegarError() : this.desplegarUsuarios() }
+				{
+					(this.props.cargando) ? this.desplegarCargando() : this.desplegarContenido()
+				}
 			</div>
 		);
 	}

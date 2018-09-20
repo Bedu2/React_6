@@ -1,3 +1,3 @@
-export const LLAMAR = 'llamar';
-export const EXITOSO = 'exitoso';
-export const FALLO = 'fallo';
+export const LLAMAR = 'usuarios_llamar';
+export const EXITOSO = 'usuarios_exitoso';
+export const FALLO = 'usuarios_fallo';
