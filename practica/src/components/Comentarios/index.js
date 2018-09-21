@@ -49,6 +49,37 @@ class Comentarios extends Component {
 	);
 
 	desplegarContenido = () => ( (this.props.error) ? this.desplegarError() : this.desplegarComentarios() );
+
+	pendiente = () => {
+		if (!this.props.nombre && !this.props.correo && !this.props.comentario) {
+			return;
+		}
+
+		return (
+			<div className="row">
+				<div className="col s12">
+					<h5>
+						Pendiente de agregar:
+					</h5>
+					{
+						(this.props.nombre) ? this.ponerCampo('Nombre', this.props.nombre) : ''
+					}
+					{
+						(this.props.correo) ? this.ponerCampo('Correo', this.props.correo) : ''
+					}
+					{
+						(this.props.comentario) ? this.ponerCampo('Comentario', this.props.comentario) : ''
+					}
+				</div>
+			</div>
+		);
+	};
+
+	ponerCampo = (titulo, valor) => (
+		<p>
+			<b>{ titulo }:</b> { valor }
+		</p>
+	);
 	
 	render() {
 		return (
@@ -60,22 +91,7 @@ class Comentarios extends Component {
 						<Button floating large className='blue' waves='light' icon='add' />
 					</Link>
 				</h3>
-				<div className="row">
-					<div className="col s12">
-						<h5>
-							Pendiente de agregar:
-						</h5>
-						<p>
-							<b>Nombre:</b> {}
-						</p>
-						<p>
-							<b>Correo:</b> {}
-						</p>
-						<p>
-							<b>Comentario:</b> {}
-						</p>
-					</div>
-				</div>
+				{ this.pendiente() }
 				{
 					(this.props.cargando) ? this.desplegarCargando() : this.desplegarContenido()
 				}
