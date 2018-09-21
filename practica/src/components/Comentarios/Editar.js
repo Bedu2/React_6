@@ -8,11 +8,19 @@ import {
 	UPDATE_COMENTARIO
 } from '../../types/comentariosTypes';
 
-class Agregar extends Component {
+class Editar extends Component {
 
-	handleChange = (event, type) => this.props.cambiarInput(type, event.target.value);
+	componentDidMount() {
+		this.props.llamarEditado(this.props.match.params.id);
+	}
 
-//----> 
+	handleChange = (event, propiedad) => {
+		this.props.cambiarEditado({
+			...this.props.comentario_editar,
+			[propiedad]: event.target.value
+		});
+	};
+
 	enviar = async () => {
 		const {
 			nombre: name,
@@ -32,9 +40,9 @@ class Agregar extends Component {
 					<Input
 						s={6}
 						label="Nombre Completo"
-						value={this.props.nombre}
+						value={this.props.comentario_editar.name}
 						onChange={
-							(event) => this.handleChange(event, UPDATE_NOMBRE)
+							(event) => this.handleChange(event, 'name')
 						}
 						name="nombre"
 					/>
@@ -42,9 +50,9 @@ class Agregar extends Component {
 						s={6} 
 						label="Correo"
 						type="email"
-						value={this.props.correo}
+						value={this.props.comentario_editar.email}
 						onChange={
-							(event) => this.handleChange(event, UPDATE_CORREO)
+							(event) => this.handleChange(event, 'email')
 						}
 						name="correo"
 					/>
@@ -54,9 +62,9 @@ class Agregar extends Component {
 						s={12}
 						label="Comentario"
 						type="textarea"
-						value={this.props.comentario}
+						value={this.props.comentario_editar.body}
 						onChange={
-							(event) => this.handleChange(event, UPDATE_COMENTARIO)
+							(event) => this.handleChange(event, 'body')
 						}
 						name="comentario"
 					/>
@@ -85,4 +93,4 @@ const mapStateToProps = ({ comentariosReducer }) =>
 	return comentariosReducer;
 }
 
-export default connect(mapStateToProps, comentariosActions)(Agregar);
+export default connect(mapStateToProps, comentariosActions)(Editar);

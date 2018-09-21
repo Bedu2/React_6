@@ -5,3 +5,5 @@ export const UPDATE_NOMBRE = 'comentarios_update_nombre';
 export const UPDATE_CORREO = 'comentarios_update_correo';
 export const UPDATE_COMENTARIO = 'comentarios_update_comentario';
 export const FORMA_EXITOSA = 'comentarios_forma_exitosa';
+export const PRIMER_GET = 'comentarios_primer_get';
+export const COMENTARIO_EDITAR = 'comentario_editar';

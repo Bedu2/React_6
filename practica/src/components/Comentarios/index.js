@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { Table ,Preloader, Button } from 'react-materialize';
+import { Table ,Preloader, Button, Icon } from 'react-materialize';
 import * as comentariosActions from '../../actions/comentariosActions';
 
 class Comentarios extends Component {
 
 	componentDidMount() {
-		if (!this.props.comentarios.length) {
+		if (!this.props.primer_get) {
 			this.props.traerComentarios();
 		}
 	}
@@ -29,6 +29,11 @@ class Comentarios extends Component {
 							<td>{ elem.email }</td>
 							<td>{ elem.name }</td>
 							<td>{ elem.body }</td>
+							<td>
+								<Link to={`/comentarios/editar/${elem.id}`}>
+									<Icon>edit</Icon>
+								</Link>
+							</td>
 						</tr>
 					))
 				}

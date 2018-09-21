@@ -5,7 +5,9 @@ import {
 	UPDATE_NOMBRE,
 	UPDATE_CORREO,
 	UPDATE_COMENTARIO,
-	FORMA_EXITOSA
+	FORMA_EXITOSA,
+	PRIMER_GET,
+	COMENTARIO_EDITAR
 } from '../types/comentariosTypes';
 
 const INITIAL_STATE = {
@@ -14,7 +16,9 @@ const INITIAL_STATE = {
 	error: '',
 	nombre: '',
 	correo: '',
-	comentario: ''
+	comentario: '',
+	primer_get: false,
+	comentario_editar: {}
 };
 
 export default (state = INITIAL_STATE, action) =>
@@ -34,7 +38,9 @@ export default (state = INITIAL_STATE, action) =>
 			nombre: '',
 			correo: '',
 			comentario: ''
-		}
+		};
+		case PRIMER_GET: return { ...state, primer_get: true };
+		case COMENTARIO_EDITAR: return { ...state, comentario_editar: action.payload };
 		default: return state;
 	}
 }
