@@ -2,11 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Input, Button, Preloader } from 'react-materialize';
 import * as comentariosActions from '../../actions/comentariosActions';
-import {
-	UPDATE_NOMBRE,
-	UPDATE_CORREO,
-	UPDATE_COMENTARIO
-} from '../../types/comentariosTypes';
 
 class Editar extends Component {
 
