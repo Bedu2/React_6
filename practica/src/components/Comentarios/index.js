@@ -7,8 +7,9 @@ import * as comentariosActions from '../../actions/comentariosActions';
 class Comentarios extends Component {
 
 	componentDidMount() {
-		this.props.traerComentarios();
-		console.log(1);
+		if (!this.props.comentarios.length) {
+			this.props.traerComentarios();
+		}
 	}
 
 	desplegarComentarios = () => (
@@ -59,6 +60,22 @@ class Comentarios extends Component {
 						<Button floating large className='blue' waves='light' icon='add' />
 					</Link>
 				</h3>
+				<div className="row">
+					<div className="col s12">
+						<h5>
+							Pendiente de agregar:
+						</h5>
+						<p>
+							<b>Nombre:</b> {}
+						</p>
+						<p>
+							<b>Correo:</b> {}
+						</p>
+						<p>
+							<b>Comentario:</b> {}
+						</p>
+					</div>
+				</div>
 				{
 					(this.props.cargando) ? this.desplegarCargando() : this.desplegarContenido()
 				}

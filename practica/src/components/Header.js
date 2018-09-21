@@ -6,8 +6,6 @@ const Header = (props) =>
 (
 	<div>
 		<Navbar left>
-			{/*<NavItem href='/'><Icon>comment</Icon></NavItem>
-			<NavItem href='/usuarios'><Icon>account_circle</Icon></NavItem>*/}
 			<li>
 				<Link to="/">
 					<Icon>comment</Icon>
